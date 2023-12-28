@@ -458,6 +458,17 @@ python-versions = ">=3.8"
 referencing = ">=0.31.0"
 
 [[package]]
+name = "julia"
+version = "0.6.1"
+description = "Julia/Python bridge with IPython support."
+category = "main"
+optional = false
+python-versions = ">=3.4"
+
+[package.extras]
+test = ["ipython", "mock", "numpy", "pytest (>=4.4)"]
+
+[[package]]
 name = "juliapkg"
 version = "0.1.10"
 description = "Julia version manager and package manager"
@@ -923,6 +934,33 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
 [[package]]
+name = "path"
+version = "16.9.0"
+description = "A module wrapper for os.path"
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[package.extras]
+docs = ["furo", "jaraco.packaging (>=9.3)", "jaraco.tidelift (>=1.4)", "rst.linker (>=1.9)", "sphinx (<7.2.5)", "sphinx (>=3.5)", "sphinx-lint"]
+testing = ["appdirs", "more-itertools", "packaging", "pygments", "pytest (>=6)", "pytest-black (>=0.3.7)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-enabler (>=2.2)", "pytest-mypy (>=0.9.1)", "pytest-ruff", "pywin32"]
+
+[[package]]
+name = "path-py"
+version = "12.5.0"
+description = "A module wrapper for os.path"
+category = "main"
+optional = false
+python-versions = ">=3.5"
+
+[package.dependencies]
+path = "*"
+
+[package.extras]
+docs = ["jaraco.packaging (>=3.2)", "rst.linker (>=1.9)", "sphinx"]
+testing = ["appdirs", "packaging", "pygments", "pytest (>=3.5,!=3.7.3)", "pytest-black-multipy", "pytest-checkdocs (>=1.2.3)", "pytest-cov", "pytest-flake8"]
+
+[[package]]
 name = "pillow"
 version = "10.1.0"
 description = "Python Imaging Library (Fork)"
@@ -1021,6 +1059,20 @@ sqlalchemy = ["pandas", "sqlalchemy"]
 timezone = ["backports.zoneinfo", "tzdata"]
 xlsx2csv = ["xlsx2csv (>=0.8.0)"]
 xlsxwriter = ["xlsxwriter"]
+
+[[package]]
+name = "pycall"
+version = "2.3.2"
+description = "A flexible python library for creating and using Asterisk call files."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+"path.py" = ">=6.2.0"
+
+[package.extras]
+test = ["codacy-coverage", "pytest", "pytest-cov", "python-coveralls", "sphinx"]
 
 [[package]]
 name = "pycodestyle"
@@ -1737,7 +1789,7 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "c9a042f78a98501934899ed0ab01527fe776ea866f0fad45433d5eefa83c43de"
+content-hash = "528e07c2a7b09471e624bb30b625ad8907eaac97e93af30baac2adeb2917edd2"
 
 [metadata.files]
 alabaster = [
@@ -2208,6 +2260,10 @@ jsonschema-specifications = [
     {file = "jsonschema_specifications-2023.12.1-py3-none-any.whl", hash = "sha256:87e4fdf3a94858b8a2ba2778d9ba57d8a9cafca7c7489c46ba0d30a8bc6a9c3c"},
     {file = "jsonschema_specifications-2023.12.1.tar.gz", hash = "sha256:48a76787b3e70f5ed53f1160d2b81f586e4ca6d1548c5de7085d1682674764cc"},
 ]
+julia = [
+    {file = "julia-0.6.1-py2.py3-none-any.whl", hash = "sha256:69b997866dac2900e23563bd954ba634f8829f4f16ab7107ba1e9b4a90381b67"},
+    {file = "julia-0.6.1.tar.gz", hash = "sha256:dbada3b47cb14b3e1893dae8339053e014cf09f8158f408b6a129ca4dfca1f61"},
+]
 juliapkg = [
     {file = "juliapkg-0.1.10-py3-none-any.whl", hash = "sha256:716a4e665bd3c9cc9321d45712d60ba624c50d64ec73b04a7f0ee962649c8f1b"},
     {file = "juliapkg-0.1.10.tar.gz", hash = "sha256:70507318d51ac8663e856f56048764e49f5a0c4c90d81a3712d039a316369505"},
@@ -2587,6 +2643,14 @@ pandocfilters = [
     {file = "pandocfilters-1.5.0-py2.py3-none-any.whl", hash = "sha256:33aae3f25fd1a026079f5d27bdd52496f0e0803b3469282162bafdcbdf6ef14f"},
     {file = "pandocfilters-1.5.0.tar.gz", hash = "sha256:0b679503337d233b4339a817bfc8c50064e2eff681314376a47cb582305a7a38"},
 ]
+path = [
+    {file = "path-16.9.0-py3-none-any.whl", hash = "sha256:d78c59194bce7362aae4798540f10bafa3eede0153a477556b23e915428f707d"},
+    {file = "path-16.9.0.tar.gz", hash = "sha256:dfd31c2af60e8889a13538bef302ade7adacdb5351836be22638e2349ddd5d7b"},
+]
+path-py = [
+    {file = "path.py-12.5.0-py3-none-any.whl", hash = "sha256:a43e82eb2c344c3fd0b9d6352f6b856f40b8b7d3d65cc05978b42c3715668496"},
+    {file = "path.py-12.5.0.tar.gz", hash = "sha256:8d885e8b2497aed005703d94e0fd97943401f035e42a136810308bff034529a8"},
+]
 pillow = [
     {file = "Pillow-10.1.0-cp310-cp310-macosx_10_10_x86_64.whl", hash = "sha256:1ab05f3db77e98f93964697c8efc49c7954b08dd61cff526b7f2531a22410106"},
     {file = "Pillow-10.1.0-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:6932a7652464746fcb484f7fc3618e6503d2066d853f68a4bd97193a3996e273"},
@@ -2670,6 +2734,10 @@ polars = [
     {file = "polars-0.20.2-cp38-abi3-manylinux_2_24_aarch64.whl", hash = "sha256:a3c4f67573147c2af87c705d4ffd295b865f7e28c88884f7739fb364607e0cd0"},
     {file = "polars-0.20.2-cp38-abi3-win_amd64.whl", hash = "sha256:7a4e88681e491090435a3c859df7a52d55e6d6ce2891cd404b1668959cfaaebf"},
     {file = "polars-0.20.2.tar.gz", hash = "sha256:483562f157e6aef6cb4343bf13d11295c8bff55ee62fef8010975a5fc22ff4e0"},
+]
+pycall = [
+    {file = "pycall-2.3.2-py2.py3-none-any.whl", hash = "sha256:d297fceaebb0a8fd1471dde2de5768c5f14125d4225d86552514f6ae40312978"},
+    {file = "pycall-2.3.2.tar.gz", hash = "sha256:f20aa7570c597cc1e122683dd4c54b43d8e984700d29da57240aa39cc6c21cd4"},
 ]
 pycodestyle = [
     {file = "pycodestyle-2.11.1-py2.py3-none-any.whl", hash = "sha256:44fe31000b2d866f2e41841b18528a505fbd7fef9017b04eff4e2648a0fadc67"},
