@@ -1,0 +1,40 @@
+[tool.poetry]
+name = "rightgbm"
+version = "0.1.0"
+description = "LightGBM-based ML model to detect tumor cells in spatial transcriptome samples of glioblastoma multiforme"
+authors = ["yo-aka-gene <yujiokano@keio.jp>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+polars = "^0.20.2"
+lightgbm = "^4.2.0"
+optuna = "^3.5.0"
+numpy = "^1.26.2"
+tqdm = "^4.66.1"
+matplotlib = "^3.8.2"
+seaborn = "^0.13.0"
+scipy = "^1.11.4"
+anndata = "^0.10.3"
+juliapkg = "^0.1.10"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.3"
+tox = "^4.11.4"
+flake8 = "^6.1.0"
+setuptools = "^69.0.3"
+twine = "^4.0.2"
+wheel = "^0.42.0"
+pandoc = "^2.3"
+numpydoc = "^1.6.0"
+nbsphinx = "^0.9.3"
+sphinx-gallery = "^0.15.0"
+sphinx-rtd-theme = "^2.0.0"
+sphinx = "^7.2.6"
+myst-parser = "^2.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
