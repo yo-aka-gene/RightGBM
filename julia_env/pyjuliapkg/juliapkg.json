@@ -1,1 +1,1 @@
-{"packages": {"JuMP": {"uuid": "4076af6c-e467-56ae-b986-b466b2749572"}}, "julia": "^1.8.2"}
+{"packages": {"JuMP": {"uuid": "4076af6c-e467-56ae-b986-b466b2749572"}, "RCall": {"uuid": "6f49c342-dc21-5d91-9882-a32aef131414"}}, "julia": "^1.8.2"}
