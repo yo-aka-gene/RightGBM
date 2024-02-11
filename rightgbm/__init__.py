@@ -5,7 +5,7 @@ from . import data
 
 __all__ = [
     dev,
-    data
+    data,
 ]
 
 __version__ = '0.1.0'
