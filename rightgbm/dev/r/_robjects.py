@@ -2,25 +2,26 @@
 Wrapper for rpy2
 """
 import rpy2.robjects as ro
+import rpy2.robjects.packages as rp
 
 
 class R:
     def __init__(self) -> None:
-        self.renv = ro.packages.importr("renv")
+        self.renv = rp.importr("renv")
 
 
     def library(
         self, 
         pkg: str
-    ) -> ro.packages.InstalledSTPackage:
-        return ro.packages.importr(pkg)
+    ) -> rp.InstalledSTPackage:
+        return rp.importr(pkg)
 
 
     def install_packages(
         self, 
         pkg: str,
         auto_snapshot: bool = True
-    ) -> ro.packages.InstalledSTPackage:
+    ) -> rp.InstalledSTPackage:
         self.renv.install(pkg)
         if auto_snapshot:
             self.renv.snapshot()
