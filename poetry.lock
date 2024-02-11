@@ -3880,6 +3880,16 @@ files = [
 test = ["pytest (>=6.0.0)", "setuptools (>=65)"]
 
 [[package]]
+name = "xlsx2csv"
+version = "0.8.2"
+description = "xlsx to csv converter"
+optional = false
+python-versions = "*"
+files = [
+    {file = "xlsx2csv-0.8.2.tar.gz", hash = "sha256:cdd272c82f8b32f1cee76aeaef87b2ee3549661fddf90f7ecf2310967a16fc84"},
+]
+
+[[package]]
 name = "zipp"
 version = "3.17.0"
 description = "Backport of pathlib-compatible object wrapper for zip files"
@@ -3897,4 +3907,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "bab4bdfe88332b69be024d31d7c2c41c3da6a5627a5d5cd3c3904e5b514f34e5"
+content-hash = "13e43de1db5630ded6057b1db5d76d8a4a08f66bfdcd48a5ba4ae165291b7677"
