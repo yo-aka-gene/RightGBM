@@ -9,18 +9,18 @@ class DataLoader:
         name: str,
         data_path: str,
         meta_path: str,
-        save_dir: str = os.path.dirname(__file__)
+        work_dir: str = os.path.dirname(__file__)
     ) -> None:
         typechecker(name, str, "name")
         typechecker(data_path, str, "data_path")
         typechecker(meta_path, str, "meta_path")
-        typechecker(save_dir, str, "save_dir")
+        typechecker(work_dir, str, "work_dir")
         self.name = name
         self.data_path = data_path
         self.meta_path = meta_path
-        self.save_dir = save_dir
-        if not os.path.exists(self.save_dir):
-            os.makedirs(self.save_dir)
+        self.work_dir = work_dir
+        if not os.path.exists(self.work_dir):
+            os.makedirs(self.work_dir)
 
     @abstractmethod
     def fetch(self) -> None:
