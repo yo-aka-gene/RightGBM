@@ -71,7 +71,7 @@ class LoadBI(DataLoader):
                 infer_schema_length=10000
             )
 
-            # export data as feather files
+            # export data as feather files in self.work_dir
             pl.concat(
                 [
                     _data.select("GENE").collect(),
@@ -84,11 +84,11 @@ class LoadBI(DataLoader):
                 column_names=_data.select("GENE").collect().to_numpy().ravel()
             ).lazy().filter(
                 pl.col("index").is_in(valid_samples) # remove pediatric samples
-            ).sink_ipc(f"{self.work_dir}/{self.name}/{name}.feather")
+            ).sink_ipc(f"{self.work_dir}/{name}.feather")
 
-            # export meta data as feather files
+            # export meta data as feather files in self.work_dir
             corresponding_meta.sink_ipc(
-                f"{self.work_dir}/{self.name}/{name}_meta.feather"
+                f"{self.work_dir}/{name}_meta.feather"
             )
         return None
 
