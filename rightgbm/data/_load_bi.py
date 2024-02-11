@@ -36,6 +36,13 @@ class LoadBI(DataLoader):
                 f"{self.work_dir}/{self.name}/*_TPM.tsv"
             )
         }
+        meta = pl.read_excel(
+            f"{self.work_dir}/{self.name}/bi.xlsx",
+            read_csv_options={
+                "skip_rows": 43,
+                "skip_rows_after_header": 2
+            }
+        ).lazy()
         fmt_func = {
             "bi-10x":lambda pldf: pl.DataFrame(
                 np.log2(pldf.to_numpy() + 1),
@@ -47,22 +54,42 @@ class LoadBI(DataLoader):
             ) # log2(TPM/10 + 1) -> log2(TPM + 1)
         }
         for name, fn in data_files.items():
+            corresponding_meta = meta.filter(
+                (
+                    pl.col("processed data file") == "_".join(
+                        os.path.basename(fn).split("_")[1:]
+                    )
+                ) & (
+                    pl.col("adult/pediatric") == "adult")
+            ) # filter out meta data for pediatric samples and unrelated samples
+            valid_samples = corresponding_meta.select("Sample name").collect(
+                streaming=True
+            ).to_numpy().ravel().tolist()
             _data = pl.scan_csv(
                 fn,
                 separator="\t",
                 infer_schema_length=10000
             )
+
+            # export data as feather files
             pl.concat(
                 [
                     _data.select("GENE").collect(),
-                    fmt_func[name](_data.drop("GENE").collect())
+                    fmt_func[name](_data.drop("GENE").collect()) # convert units for the matrix
                 ],
                 how="horizontal"
             ).drop("GENE").transpose(
                 include_header=True,
                 header_name="index",
                 column_names=_data.select("GENE").collect().to_numpy().ravel()
-            ).lazy().sink_ipc(f"{self.work_dir}/{self.name}/{name}.feather")
+            ).lazy().filter(
+                pl.col("index").is_in(valid_samples) # remove pediatric samples
+            ).sink_ipc(f"{self.work_dir}/{self.name}/{name}.feather")
+
+            # export meta data as feather files
+            corresponding_meta.sink_ipc(
+                f"{self.work_dir}/{self.name}/{name}_meta.feather"
+            )
         return None
 
 
