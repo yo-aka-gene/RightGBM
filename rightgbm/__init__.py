@@ -1,10 +1,12 @@
 """Top-level package for rightgbm"""
 
 from . import dev
+from . import external
 from . import data
 
 __all__ = [
     dev,
+    external,
     data,
 ]
 
