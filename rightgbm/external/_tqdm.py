@@ -1,9 +1,17 @@
 """
 Wrapper func for tqdm
 """
-try:
+def in_ipython():
+    try:
+        get_ipython()
+        return True
+    except NameError:
+        return False
+
+
+if in_ipython():
     from tqdm.notebook import tqdm
-except ImportError:
+else:
     from tqdm import tqdm
 
 
