@@ -1,3 +1,6 @@
+"""
+Class to download/format GSE131928 data
+"""
 import glob
 import os
 import subprocess
