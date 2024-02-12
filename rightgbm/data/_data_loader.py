@@ -51,7 +51,7 @@ class DataLoader:
         dirname: str
     ) -> None:
         typechecker(dirname, str, "dirname")
-        subprocess.call(f"rm -rf {dirname}")
+        subprocess.call(f"rm -rf {dirname}".split())
         return None
 
 
