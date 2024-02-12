@@ -162,3 +162,7 @@ cython_debug/
 
 # MacOS
 .DS_Store
+
+# datasets
+*.h5ad
+*.feather
