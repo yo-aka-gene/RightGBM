@@ -1,5 +1,6 @@
 from abc import abstractmethod
 import os
+import subprocess
 
 from rightgbm.dev import typechecker
 
@@ -42,3 +43,37 @@ class DataLoader:
     def to_h5ad(self) -> None:
         # code to adjust format of data and export them as designated file format
         pass
+
+
+    @abstractmethod
+    def clear_intermediate_files(
+        self,
+        dirname: str
+    ) -> None:
+        typechecker(dirname, str, "dirname")
+        subprocess.call(f"rm -rf {dirname}")
+        return None
+
+
+    @abstractmethod
+    def pipeline(
+        self,
+        basename: str,
+        clear: bool = False,
+        dirname: str = None
+    ) -> None:
+        typechecker(basename, str, "basename")
+        typechecker(clear, bool, "clear")
+        if (
+            not os.path.exists(f"{self.work_dir}/{basename}.feather")
+        ) or (
+            not os.path.exists(f"{self.work_dir}/{basename}_meta.feather")
+        ):
+            self.fetch()
+            self.to_feather()
+        if not os.path.exists(f"{self.work_dir}/{basename}.h5ad"):
+            self.to_h5ad()
+        if clear:
+            dirname = self.name if dirname is None else dirname
+            typechecker(dirname, str, "dirname")
+            self.clear_intermediate_files(dirname=dirname)

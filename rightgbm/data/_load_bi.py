@@ -5,7 +5,6 @@ import subprocess
 import anndata as ad
 import numpy as np
 import polars as pl
-import scanpy as sc
 
 from ._data_loader import DataLoader
 from rightgbm.external.tqdm import tqdm
@@ -124,3 +123,28 @@ class LoadBI(DataLoader):
                 }
             ).write(f"{self.work_dir}/{name}.h5ad")
         return None
+
+
+    def clear_intermediate_files(
+            self,
+            dirname: str = None # defined for compatibility only and always ignored
+        ) -> None:
+        dirname = f"{self.work_dir}/{self.name}"
+        return super().clear_intermediate_files(dirname=dirname)
+
+
+    def pipeline(
+            self,
+            clear: bool = False
+        ) -> None:
+        # set dataset name with missing files as basename
+        names = ["bi-10x", "bi-ss2"]
+        basename = names[
+                np.argmin([
+                    len(glob.glob(f"{self.work_dir}/{v}*")) for v in names
+                ])
+            ]
+        return super().pipeline(
+            basename=basename, 
+            clear=clear
+        )
