@@ -29,7 +29,7 @@ class DataLoader:
 
 
     @abstractmethod
-    def transpose(self) -> None:
+    def to_feather(self) -> None:
         # transpose data ma†rices from original data source if needed to optimize data formats
         # for operations in python/julia
         # data are exported as .feather files in liu of .csv
@@ -39,6 +39,6 @@ class DataLoader:
 
 
     @abstractmethod
-    def adjust_format(self) -> None:
+    def to_h5ad(self) -> None:
         # code to adjust format of data and export them as designated file format
         pass
