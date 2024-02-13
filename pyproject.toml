@@ -27,6 +27,7 @@ torch = "^2.1.2"
 scanpy = "^1.9.8"
 xlsx2csv = "^0.8.2"
 pyarrow = "^15.0.0"
+watchdog = "^4.0.0"
 
 
 [tool.poetry.group.dev.dependencies]
