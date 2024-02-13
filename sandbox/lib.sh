@@ -1,6 +1,11 @@
 #!/bin/sh
 
-VMNAME=$((basename $PWD) | tr '[A-Z]' '[a-z]')-jupyterlab-1
+USERNAME=$(whoami)
 
-docker exec $VMNAME python -m pip install --no-deps -r $(dirname $0)/config/requirements.txt
-docker exec $VMNAME python -m pip install --no-deps -r $(dirname $0)/config/sandbox_reqs.txt
+if [ $USERNAME = "jovyan" ]; then
+    pip install --no-deps -r $(dirname $0)/config/requirements.txt
+    pip install --no-deps -r $(dirname $0)/config/sandbox_reqs.txt
+else
+    echo "Run in jupyter server"
+    echo $USERNAME
+fi
