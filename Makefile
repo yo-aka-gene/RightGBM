@@ -62,7 +62,7 @@ docs: ## generate Sphinx HTML documentation, including API docs
 	$(BROWSER) docs/_build/html/index.html
 
 deps: ## manually export and sync dependencies
-	poetry export --with dev -f requirements.txt -o ./docs/requirements.txt
+	poetry export --with dev -f requirements.txt -o ./docs/requirements.txt --without-hashes
 	cp ./docs/requirements.txt ./sandbox/config
 
 
