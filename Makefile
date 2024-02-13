@@ -1,4 +1,4 @@
-.PHONY: clean clean-build clean-pyc clean-test lint test help docs deps
+.PHONY: clean clean-build clean-pyc clean-test lint test help docs deps synclib
 .DEFAULT_GOAL := help
 
 define BROWSER_PYSCRIPT
@@ -61,6 +61,10 @@ docs: ## generate Sphinx HTML documentation, including API docs
 	$(MAKE) -C docs html
 	$(BROWSER) docs/_build/html/index.html
 
-deps: ## export dependencies
+deps: ## manually export and sync dependencies
 	poetry export --with dev -f requirements.txt -o ./docs/requirements.txt
 	cp ./docs/requirements.txt ./sandbox/config
+
+
+synclib: ## initiate automated sync dependencies
+	python synclib.py
